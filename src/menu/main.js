@@ -1,4 +1,3 @@
-
 /*==================== SHOW NAVBAR ====================*/
 const showMenu = (headerToggle, navbarId) =>{
     const toggleBtn = document.getElementById(headerToggle),
@@ -154,15 +153,20 @@ function renderBeer(beer){
         beerItem.innerHTML = `
      <img src="${beer.image_url}" alt="Beer Image" class="beer-img-api-menu">
          <div class="item-css">
-            <div class="content-item">Name:${beer.name}</div>
-            <div class="content-item">ABV:  ${beer.abv}</div>
-            <div class="content-item">Food:${beer.food_pairing.join(', ')}</div>
+            <div class="content-item"><span class="strong">Name: </span>${beer.name}</div>
+            <div class="content-item"><span class="strong">ABV: </span>  ${beer.abv}</div>
+            <div class="content-item"><span class="strong">Food: </span>${beer.food_pairing.join(', ')}</div>
         </div
     // `;
     }
 
     beerList.appendChild(beerItem)
 }
+
+
+
+
+
 
 
 

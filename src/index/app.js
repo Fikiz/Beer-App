@@ -37,13 +37,13 @@ async function fetchRandomBeer() {
     
         // DOM elements 
        
-       document.querySelector('#beer-name').innerHTML = `<span class="strong">Name:</span> <span class=" name">${beer.name}</span> `;
-       document.querySelector('#beer-desc').innerHTML = `<span class="strong">Description:</span  <span class="strong-2">${beer.description}</span  `;
-       document.querySelector('#beer-food-paring').innerHTML = `<span class="strong">Food Pairing:</span> <span class="strong-2"> ${beer.food_pairing.join(', ')} </span> `;
+       document.querySelector('#beer-name').innerHTML =        `<span class="strong">Name:</span>         ${beer.name} `;
+       document.querySelector('#beer-desc').innerHTML =        `<span class="strong">Description:</span   ${beer.description} `;
+       document.querySelector('#beer-food-paring').innerHTML = `<span class="strong">Food Pairing:</span> ${beer.food_pairing.join(', ')} `;
        
        //If the image from the api does not appear, we add our own image
        if(!beer.image_url){
-        document.querySelector('.left-side').innerHTML = `<img src="src/img/beer.png" alt="beer-img" class="beer-img-api">`;
+        document.querySelector('.left-side').innerHTML = `<img src="src/img/beer1.png" alt="beer-img" class="beer-img-api-alt">`;
        }else{
         document.querySelector('.left-side').innerHTML = `<img src="${beer.image_url}" alt="beer-img" class="beer-img-api">`;
        }

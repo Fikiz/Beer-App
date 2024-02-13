@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+    <link rel="stylesheet" href="src/index/style.css">
+    <title>Saloon Pub | Home</title>
+</head>
+<body>
+    <!-- Pre-header section -->
+    <div id="pre-header">
+        <div class="logo">Beer Shop</div>
+        <input type="checkbox" id="nav_check">
+        <nav>
+            <ul>
+                <li> <a href="#header">Home</a> </li>
+                <li> <a href="#wrapper">Offers</a> </li>
+                <li> <a href="#footer">Contact Us</a> </li>
+                <li> <a href="./menu.html">Menu</a> </li>
+            </ul>
+        </nav>
+        <label for="nav_check" class="hamburger" hidden>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+    </div> 
+    <!-- Background Image -->
+    <div id="header-home">
+        <div class="header-home container"> </div>
+    </div> 
+
+ <!-- Random beer section -->
+    <div id="wrapper">
+        
+        <div class="left-side">
+        <!-- <img src="./src/img/beer.png" alt="beer-img" class="beer-img-api"> -->
+        </div>
+        <!-- Right Side (Text Content) -->
+        <div class="right-side">
+            <div class="content-item" id="beer-name"></div>
+            <div class="content-item" id="beer-desc"><span class="item-name"></div>
+            <div class="content-item" id="beer-food-paring"></div>
+         <!-- buttons -->
+            <div class="buttons">
+                <button class=" button button-89 " role="button" id="btn-fetch-again">Refresh</button>
+                <button  class=" button button-89 " role="button" id="btn-buy">Buy Beer</button>
+            </div>
+     </div>
+    </div>
+
+<!-- Pop Up loader -->
+    <div class="loader" id="popup-loader">
+        <img src="src/img/404-tick.png" alt="tick"> 
+        <h2>Good choice!</h2>
+        <p>For more see the menu. Thanks!</p>
+        <button type="button" id="close-popup">OK</button>
+    </div>
+
+    <div class="overlay"></div>
+
+   <script src="/src/index/app.js"></script>
+</body>
+</html>

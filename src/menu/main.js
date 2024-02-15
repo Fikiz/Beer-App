@@ -37,49 +37,48 @@ const abvGreater = document.querySelector('#abvGreater');
 const abvLess = document.querySelector('#abvLess');
 const beforeYear = document.querySelector('#beforeYear');
     
-
 let pageNumber = 1;
+
 
 // ======= EVENTS ==========
 searchInputAll.addEventListener('input', () => {
-    changePage(1)
+    fetchData(1)
  });
 
 // Event listeners for checkboxes
 abvGreater.addEventListener('change', () => {
-    changePage(1); // Assuming you always want to start from the first page
+    fetchData(1); // Assuming you always want to start from the first page
 });
 
 abvLess.addEventListener('change', () => {
-    changePage(1);
+    fetchData(1);
 });
 
 beforeYear.addEventListener('change', () => {
-    changePage(1);
+    fetchData(1);
 });
-
 
 // next and previous buttons
 previousPage.addEventListener('click',() => {
     pageNumber--;
-    changePage(pageNumber)
+    fetchData(pageNumber)
 })
 nextPage.addEventListener('click',()=>{
     pageNumber++;
-    changePage(pageNumber)
+    fetchData(pageNumber)
 })
 
 // Event listener for perPageSelect change
 perPageSelect.addEventListener('change', function() {
    let perPage = perPageSelect.value;
-    changePage(pageNumber, perPage);
+   fetchData(pageNumber, perPage);
 });
 
 
 // =================== FUNCTIONS =====================
 
-// Function to handle changing pages
-function changePage(pageNumber,perPage) {
+// Function to handle changing pages,per page, checkbox category, search bar
+function fetchData(pageNumber,perPage) {
     const searchQuery = searchInputAll.value.toLowerCase();  
     perPage = perPageSelect.value;
 
@@ -94,13 +93,13 @@ function changePage(pageNumber,perPage) {
 
  // Modify apiUrl based on checkbox status
     if (abvGreater) {
-         apiUrl += '&abv_gt=6'; // Adjust the query parameters according to your API's requirements
+         apiUrl += '&abv_gt=6'; 
     }
     if (abvLess) {
          apiUrl += '&abv_lt=6';
     }
     if (beforeYear) {
-         apiUrl += '&brewed_before=12-2102';
+         apiUrl += '&brewed_before=12-2012';
     }
 
  fetch(apiUrl)
@@ -117,7 +116,7 @@ function changePage(pageNumber,perPage) {
                 renderBeer(beer);
             });
 
-            // Logic to show/hide pagination buttons based on page number
+            // show/hide pagination buttons based on page number
             if (pageNumber === 1) {
                 previousPage.style.display = 'none';
             } else {
@@ -133,7 +132,7 @@ function changePage(pageNumber,perPage) {
         .catch(error => console.error('Error fetching beers:', error));  
 }
 
-changePage(1, 25); // show first page with 25 elements per page
+fetchData(1, 25); // show first page with 25 elements per page
 
 
 // Function render a signle beer item

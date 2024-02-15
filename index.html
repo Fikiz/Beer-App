@@ -9,6 +9,7 @@
     <title>Saloon Pub | Home</title>
 </head>
 <body>
+
     <!-- Pre-header section -->
     <div id="pre-header">
         <div class="logo">Beer Shop</div>
@@ -28,6 +29,7 @@
             <div></div>
         </label>
     </div> 
+    
     <!-- Background Image -->
     <div id="header-home">
         <div class="header-home container"> </div>
@@ -46,21 +48,54 @@
             <div class="content-item" id="beer-food-paring"></div>
          <!-- buttons -->
             <div class="buttons">
-                <button class=" button button-89 " role="button" id="btn-fetch-again">Refresh</button>
+                <button class=" button button-89 " role="button" id="btn-fetch-again">Show another</button>
                 <button  class=" button button-89 " role="button" id="btn-buy">Buy Beer</button>
             </div>
      </div>
     </div>
 
 <!-- Pop Up loader -->
-    <div class="loader" id="popup-loader">
+    <div class="modal" id="popup-loader">
         <img src="src/img/404-tick.png" alt="tick"> 
         <h2>Good choice!</h2>
         <p>For more see the menu. Thanks!</p>
         <button type="button" id="close-popup">OK</button>
     </div>
-
+<!-- overlay for modal -->
     <div class="overlay"></div>
+
+    
+    <!-- Footer/ Contact Us Section -->
+    <div id="footer" >
+        <div class="footer container">
+            <div class="footer-row">
+                <div class="contact-left hidden">
+                    <h1 class="sub-title">Contact Us</h1>
+                    <p><i class="fa fa-phone"></i>(+012) 345-678</p>
+                    <p><i class="fa fa-envelope"></i>beer@mail.com</p>
+                   <p><i class="fa fa-map-marker"></i>Our Adress 27.</p>
+                   <div class="social-icons">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                   </div>
+                </div>
+                <div class="contact-right hidden">
+                    <form>
+                        <input type="text" name="name" placeholder="Your Name">
+                        <input type="email" name="email" placeholder="Your Email">
+                        <textarea name="message"  rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright hidden">
+            <p>Copyright @ Filip. Made with <i class="fa fa-heart" style="font-size:25px;color:red"></i></i> by Filip Karakamchev.</p>
+        </div>
+    </div> 
 
    <script src="/src/index/app.js"></script>
 </body>

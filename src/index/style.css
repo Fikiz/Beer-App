@@ -146,9 +146,8 @@ html{
 /* Buttons Container */
 .buttons {
     margin-top: 20px;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
+    text-align: center;
+    
 }
 /* Buttons Style */
 
@@ -187,7 +186,7 @@ html{
     color: #fff;
   }
 /* Loader */
-.loader{
+.modal{
     width: 400px;
     background:#fff;
     border-radius: 6px;
@@ -209,18 +208,18 @@ html{
     transform:translate(-50%,-50%) scale(1);
     
 }
-.loader img{
+.modal img{
     width: 100px;
     margin-top: -50px;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-.loader h2{
+.modal h2{
     font-size: 38px;
     font-weight: 500;
     margin: 30px 0 10px;
 }
-.loader button{
+.modal button{
     width: 100%;
     margin-top: 50px;
     padding: 10px 0;
@@ -232,7 +231,93 @@ html{
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
 
+
+/* Footer / Contat Us Section */
+#footer {
+    background-image: url(/src/img/bg-2.jpg); 
+	background-size: cover;
+	background-position: top center;
+    color: white;
+    
+}
+#footer .footer {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 50px;
+	
+}
+.footer-row{
+    display: flex;
+    flex-direction: row;
+}
+.contact-left{
+    margin-left: -5%;
+    flex-basis: 35%;
+}
+.contact-right{
+     margin-left: 40%;
+}
+.contact-left h1{
+    font-family: 'Dancing Script', cursive;
+    font-size: 45px; 
+    margin-left: -30%;
+}
+.contact-left p{
+    margin-top: 30px;
+}
+.contact-left p i{
+    color: white;
+    margin-right: 15px;
+    font-size: 25px;
+}
+.social-icons{
+    margin-top: 30px;
+}
+.social-icons a{
+    text-decoration: none;
+    font-size: 30px;
+    margin-right: 15px;
+    color: #ababab;
+    display: inline-block;
+    transition: transform 0.5s;
+}
+.social-icons a:hover{
+    color: #ff004f;
+    transform: translateY(-5px);
+}
+.btn{
+    display: inline-block;
+    background-color: #D1BAA4 ;
+}
+.contact-right form{
+    width: 100%;
+}
+form input, form textarea{
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: #262626 ;
+    padding: 15px;
+    margin: 15px 0;
+    column-rule-color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+}
+form .btn {
+    padding: 14px 60px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    font-weight: 300;
+    margin-top: 20px;
 }
 
 
@@ -348,6 +433,10 @@ html{
      .right-side{
         justify-content: flex-start;
         margin-left: -40px;
+        font-size: 18px;
+    }
+    .strong{
+        font-size: 20px;
     }
     .beer-img-api{
         width: 38%;
@@ -381,9 +470,13 @@ html{
 
     .right-side {
         order: 2; 
-        margin-top: 90px; 
+        margin-top: 175px; 
         margin-left: 200px; 
-        align-items: flex-start;/
+        align-items: flex-start;
+        font-size: 20px;
+    }
+    .strong{
+        font-size: 22px;
     }
 }
 

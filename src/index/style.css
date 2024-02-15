@@ -454,6 +454,9 @@ form .btn {
         top: 150%;
         width: 90%;
     }
+    #footer{
+        color: black;
+    }
     
 }
 @media screen and (min-width: 768px) {
@@ -477,6 +480,9 @@ form .btn {
     }
     .strong{
         font-size: 22px;
+    }
+    #footer{
+        color: black;
     }
 }
 

@@ -29,7 +29,7 @@ linkColor.forEach(l => l.addEventListener('click', colorLink))
 
 // ============== FETCH API BEER DATA ===========================
 const beerList = document.querySelector('#beerList');
-const searchInputAll = document.querySelector('#searchInput');
+const searchInput = document.querySelector('#searchInput');
 const perPageSelect = document.querySelector('#perPageSelect');
 const previousPage = document.querySelector('#previousBtn');
 const nextPage = document.querySelector('#nextBtn');
@@ -41,9 +41,9 @@ let pageNumber = 1;
 
 
 // ======= EVENTS ==========
-searchInputAll.addEventListener('input', () => {
-    fetchData(1)
- });
+
+// event listener to search input
+document.getElementById('searchInput').addEventListener('input', handleSearchInputChange);
 
 // Event listeners for checkboxes
 abvGreater.addEventListener('change', () => {
@@ -77,94 +77,129 @@ perPageSelect.addEventListener('change', function() {
 
 // =================== FUNCTIONS =====================
 
-// Function to handle changing pages,per page, checkbox category, search bar
-function fetchData(pageNumber,perPage) {
-    const searchQuery = searchInputAll.value.toLowerCase();  
-    perPage = perPageSelect.value;
 
- // Get the checked status of checkboxes
-    const abvGreater = document.querySelector('#abvGreater').checked;
-    const abvLess = document.querySelector('#abvLess').checked;
-    const beforeYear = document.querySelector('#beforeYear').checked;
-   
+  
+//  fetch data based on search input
+function fetchSearchResults(searchValue) {
     
- // Construct the API URL with pagination parameters
-    let apiUrl = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`;
+    beerList.innerHTML = '';
+    nextPage.style.display = 'none';
+    previousPage.style.display = 'none';
+// Construct the api with search parameter
+    let apiUrl = `https://api.punkapi.com/v2/beers?beer_name=${searchValue.replace(/ /g, '_')}`;
 
- // Modify apiUrl based on checkbox status
-    if (abvGreater) {
-         apiUrl += '&abv_gt=6'; 
-    }
-    if (abvLess) {
-         apiUrl += '&abv_lt=6';
-    }
-    if (beforeYear) {
-         apiUrl += '&brewed_before=12-2012';
-    }
-
- fetch(apiUrl)
+    fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            // Ensure data is an array before proceeding
             if (!Array.isArray(data)) {
                 console.error('Data is not an array:', data);
                 return;
             }
-            const filteredData = data.filter(beer => beer.name.toLowerCase().includes(searchQuery)); 
+            data.forEach(beer => {
+                renderBeer(beer);
+            });
+        })
+        .catch(error => console.error('Error fetching beers:', error));
+}
+
+// Function to handle search input change
+function handleSearchInputChange() {
+    const searchValue = searchInput.value;
+
+    // If searchValue is empty, fetch all data using fetchData
+    if (searchValue === '') {
+        fetchData(1, perPageSelect.value);
+    } else {
+        // fetch search results using fetchSearchResults
+        fetchSearchResults(searchValue);
+    }
+}
+
+
+
+// Function to handle changing pages, per page, checkbox category
+function fetchData(pageNumber, perPage) {
+    perPage = perPageSelect.value;
+
+    // Get the checked status of checkboxes
+    const abvGreater = document.querySelector('#abvGreater').checked;
+    const abvLess = document.querySelector('#abvLess').checked;
+    const beforeYear = document.querySelector('#beforeYear').checked;
+
+    // Construct the API URL with pagination parameters
+    let apiUrl = `https://api.punkapi.com/v2/beers?page=${pageNumber}&per_page=${perPage}`;
+    console.log(apiUrl);
+
+    // Modify apiUrl based on checkbox status
+    if (abvGreater) {
+        apiUrl += '&abv_gt=6';
+    }
+    if (abvLess) {
+        apiUrl += '&abv_lt=6';
+    }
+    if (beforeYear) {
+        apiUrl += '&brewed_before=12-2012';
+    }
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            
+            if (!Array.isArray(data)) {
+                console.error('Data is not an array:', data);
+                return;
+            }
+
+            // Clear existing beer list
             beerList.innerHTML = '';
-            filteredData.forEach(beer => {
+
+            data.forEach(beer => {
                 renderBeer(beer);
             });
 
-            // show/hide pagination buttons based on page number
-            if (pageNumber === 1) {
-                previousPage.style.display = 'none';
-            } else {
-                previousPage.style.display = 'block';
-            }
+             // show/hide pagination buttons based on page number
+         if (pageNumber === 1) {
+                 previousPage.style.display = 'none';          
+                 } 
+                 else {
+                 previousPage.style.display = 'block';
+             }
 
-            if (data.length <= pageNumber) {
-                nextPage.style.display = 'none';
-            } else {
-                nextPage.style.display = 'block';
-            }
+             if (data.length <= pageNumber) {
+                 nextPage.style.display = 'none';
+             } else {
+                 nextPage.style.display = 'block';
+             }
         })
-        .catch(error => console.error('Error fetching beers:', error));  
+        .catch(error => console.error('Error fetching beers:', error));
 }
+
 
 fetchData(1, 25); // show first page with 25 elements per page
 
-
-// Function render a signle beer item
-function renderBeer(beer){
+// Function render a single beer item
+function renderBeer(beer) {
     const beerItem = document.createElement('div');
     beerItem.classList.add('item');
 
-    if(!beer.image_url){
+    if (!beer.image_url) {
         beerItem.innerHTML = `<img src="src/img/beer.png" alt="beer-img" class="beer-img-api-menu">
-        <div class="item-css">
-            <div class="content-item">Name:${beer.name}</div>
-            <div class="content-item">ABV:  ${beer.abv}</div>
-            <div class="content-item">Food:${beer.food_pairing.join(', ')}</div>
-        </div
-        `;
-    }else{
-        beerItem.innerHTML = `
-     <img src="${beer.image_url}" alt="Beer Image" class="beer-img-api-menu">
-         <div class="item-css">
-            <div class="content-item"><span class="strong">Name: </span>${beer.name}</div>
-            <div class="content-item"><span class="strong">ABV: </span>  ${beer.abv}</div>
-            <div class="content-item"><span class="strong">Food: </span>${beer.food_pairing.join(', ')}</div>
-        </div
-    // `;
+            <div class="item-css">
+                <div class="content-item">Name:${beer.name}</div>
+                <div class="content-item">ABV:  ${beer.abv}</div>
+                <div class="content-item">Food:${beer.food_pairing.join(', ')}</div>
+            </div>`;
+    } else {
+        beerItem.innerHTML = `<img src="${beer.image_url}" alt="Beer Image" class="beer-img-api-menu">
+            <div class="item-css">
+                <div class="content-item"><span class="strong">Name: </span>${beer.name}</div>
+                <div class="content-item"><span class="strong">ABV: </span>  ${beer.abv}</div>
+                <div class="content-item"><span class="strong">Food: </span>${beer.food_pairing.join(', ')}</div>
+            </div>`;
     }
 
-    beerList.appendChild(beerItem)
+    beerList.appendChild(beerItem);
 }
-
-
-
-
 
 
 
